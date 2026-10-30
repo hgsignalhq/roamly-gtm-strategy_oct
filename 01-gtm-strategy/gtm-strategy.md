@@ -42,35 +42,72 @@ Expand
 I am pushing back on Assumption 2: that invitee friction and forced signups will stall checkout and break the PLG loop. We are not forcing full account registration or identity verification on invitees at checkout; they pay via frictionless 1-click guest checkout (Apple Pay / Google Pay). Furthermore, payment risk is managed via an automated 48-hour card hold placed by the Coordinator with automatic SMS nudges, guaranteeing inventory hold without leaving Roamly or the Coordinator with stranded seats. Invitee conversion to Roamly users is an intentional secondary onboarding loop post-payment (unlocking shared itineraries, offline passes, and a $25 credit toward their next trip), not a checkout gate.
 
 ## 5. V1 GTM strategy one-pager
+# Roamly Groups: GTM V1
 
-Roamly Groups: GTM V1
+**Status:** V1 Draft (Internal) | **Owner:** [OWNER] | **Updated:** Oct 30, 2026
+**Reviewers:** Trust & Safety, Finance & Payments, Customer Experience, PMM, Host Operations
 
-Problem: Group demand is already on Roamly but is hacked across accounts and off-platform payments, so high-value bookings drop at checkout.
+---
 
-Target: Stressed Trip Captains (bachelor/bachelorette and friend-group organizers) as the beachhead. Validate with workaround telemetry by segment before locking. Test team offsite coordinators as the repeat-usage segment in parallel.
+## Summary
 
-Value prop: Book the experience, split the bill at checkout, never chase friends for money. Guests pay in one tap with no account needed.
+Group demand already lives on Roamly. It is hacked across accounts and off-platform payments, so high-value bookings drop at checkout. Roamly Groups turns that workaround into a product and every booking into an invite loop.
 
-Motion: PLG, with the invitee loop as the engine. The loop is: coordinator books, invitees pay via guest checkout, invitees activate post-payment (shared itinerary, offline pass, $25 credit), activated invitees become future coordinators.
+## Problem
 
-Channel approach (in priority order):
+Users sync availability across separate accounts and split payments off-platform. The result is checkout drop-off, lost booking fees, and customer support strain.
 
-In-product conversion of existing demand. Target users with multi-ticket carts, high group-size searches, and prior workaround behavior. Use a “Make this a group booking” prompt at cart and in email and push. This is the cheapest and fastest test of the thesis.
-Invitee loop. The share link and SMS nudges are your main acquisition surface. Optimize the guest checkout page, the post-payment activation screen, and the credit offer. Test credit sizes and timing.
-Intent capture. SEO and content for “[city] bachelorette activities” and group-trip planning queries, plus creator partnerships in wedding and bachelorette content.
-Paid, minimal. Retarget group-intent searchers only. Don’t plan around organic fully replacing paid.
+## Target
 
-North star metric: Activated new users per completed group booking. This counts guest payers who complete post-payment onboarding within 7 days, divided by completed group bookings. It tests the viral thesis directly.
+- **Beachhead:** Stressed Trip Captains (bachelor/bachelorette and friend-group organizers)
+- **Parallel test:** Team offsite coordinators, as the repeat-use segment
+- **Validation:** Confirm with workaround telemetry by segment before locking the choice
 
-Guardrails:
+## Value Proposition
 
-Group checkout completion (all seats paid before the hold expires)
-Coordinator fallback rate (share of groups where the coordinator absorbs unpaid seats)
-90-day second-booking rate for activated invitees, which tells you if the $25 credit pays back
-Group GBV and support tickets per group booking
+> Book the experience, split the bill at checkout, never chase friends for money. Guests pay in one tap, no account needed.
 
-Open questions for the next draft:
+## Motion: Product-Led Growth (Invitee Loop as the Engine)
 
-What happens to unpaid seats at hold expiry, and who carries the risk?
-Which segment has the highest workaround volume in your telemetry?
-What baseline invitee-activation rate would justify the $25 credit?
+```mermaid
+flowchart LR
+    A["1. Coordinator books<br/>48-hour card hold locks inventory"] --> B["2. Invitees pay<br/>1-tap guest checkout + SMS nudges"]
+    B --> C["3. Invitees activate<br/>Itinerary, offline pass, $25 credit"]
+    C --> D["4. New coordinators<br/>Activated invitees plan the next trip"]
+    D --> A
+```
+
+| Step | What happens |
+|------|--------------|
+| 1. Coordinator books | Places a 48-hour card hold to lock inventory |
+| 2. Invitees pay | 1-click guest checkout via Apple Pay or Google Pay, with automatic SMS nudges |
+| 3. Invitees activate | Post-payment onboarding: shared itinerary, offline pass, $25 credit toward next trip |
+| 4. New coordinators | Activated invitees become the next group's coordinator |
+
+## Channels (Priority Order)
+
+1. **Convert existing demand.** Target multi-ticket carts, large-group searches, and known workaround users with a "Make this a group booking" prompt in cart, email, and push.
+2. **Invitee loop.** The share link and SMS nudges are the main acquisition surface. Optimize guest checkout, the activation screen, and credit size.
+3. **Intent capture.** SEO for "[city] bachelorette activities" and group-trip queries, plus wedding and bachelorette creator partnerships.
+4. **Minimal paid.** Retarget group-intent searchers only. Organic supplements acquisition; it does not replace it.
+
+## North Star Metric
+
+**Activated new users per completed group booking**
+
+Guest payers who finish post-payment onboarding within 7 days, divided by completed group bookings. This tests the viral thesis directly. Numeric targets will be set once cart and support baselines are in.
+
+## Guardrails
+
+| Metric | What it tells us |
+|--------|------------------|
+| Group checkout completion | All seats paid before the hold expires |
+| Coordinator fallback rate | Share of groups where the coordinator absorbs unpaid seats |
+| 90-day rebooking rate | Whether activated invitees book again, which proves the $25 credit pays back |
+| Group GBV and support tickets | Gross booking value and support load per group booking |
+
+## Open Questions for V2
+
+- [ ] What happens to unpaid seats at hold expiry, and who carries the risk?
+- [ ] Which segment shows the highest workaround volume in telemetry?
+- [ ] What invitee activation rate justifies the $25 credit?
